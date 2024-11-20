@@ -67,7 +67,7 @@ export default function Home(){
         alignItems:"center",
         gap:10}}>
       
-        <Text style={style.subTitle}>Go To Shopping</Text>
+        <Text style={style.subTitle}>Go To Shop</Text>
         <ArrowRightIcon  />
       </TouchableOpacity>
       
