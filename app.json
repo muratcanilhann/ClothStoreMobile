@@ -23,6 +23,20 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+       "expo-font",
+{
+  "fonts": [
+    "./assets/BeatriceDeck-ExtraboldItalic.ttf",
+    "./assets/BeatriceDeck-RegularItalic.ttf",
+    "./assets/BeatriceDeck-SemiBoldItalic.ttf",
+    "./assets/BeatriceDeck-Thin.ttf",
+    "./assets/BeatriceDeck-Light.ttf"
+  ]
+}
+      ]
+    ]
   }
 }
