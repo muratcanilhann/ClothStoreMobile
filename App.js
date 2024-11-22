@@ -10,8 +10,8 @@ import { useFonts } from 'expo-font';
 import {useEffect} from 'react';
 import { BasketContextProvider } from './src/context/basketContext.js';
 
-
-import {Profile,BasketPage,Products,Home,ProductDetail,Checkout} from "./src/screens/index.js"
+import Home from './src/screens/Home/Home.js';
+import {Profile,BasketPage,Products,ProductDetail,Checkout} from "./src/screens/index.js"
 
 import {
   createStaticNavigation,
