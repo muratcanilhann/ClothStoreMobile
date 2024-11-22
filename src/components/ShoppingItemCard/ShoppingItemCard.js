@@ -92,10 +92,10 @@ export default function ShoppingItemCard({item,addItem,removeItem,deleteItem}){
 
         </View>
 
-            <Text style={{color:"gray",fontFamily:"BeatriceDeck-RegularItalic"}}>Cotton Tshirt</Text>
+            <Text style={{color:"gray",fontFamily:"BeatriceDeck-RegularItalic"}}>{item.category}</Text>
             <View style={{flex:1,flexDirection:"row",width:270,justifyContent:"space-between"}}>
-               <Text style={{fontFamily:"BeatriceDeck-SemiBoldItalic"}}>Full sleeve zipper </Text>
-               <Text style={{fontFamily:"BeatriceDeck-SemiBoldItalic"}}>$100</Text>
+               <Text style={{fontFamily:"BeatriceDeck-SemiBoldItalic"}}>{item.name} </Text>
+               <Text style={{fontFamily:"BeatriceDeck-SemiBoldItalic"}}>${item.price}</Text>
 
             </View>
 

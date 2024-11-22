@@ -12,14 +12,14 @@ export default function Home(){
     const navigation = useNavigation();
 
     const products = [
-        { id: '1', name: 'Ürün 1', price: 100, image: require('./../../assets/Kiyafet1.png'),
+        { id: '1', name: 'White Pants',category:"Pants", price: 100, image: require('./../../assets/Kiyafet1.png'),
             description: "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front."
          },
-        { id: '2', name: 'Ürün 2', price: 200, image: require('./../../assets/Kiyafet2.png'),
+        { id: '2', name: 'Blue Shirt',category:"Shirt", price: 200, image: require('./../../assets/Kiyafet2.png'),
             description: "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front." },
-        { id: '3', name: 'Ürün 3', price: 300, image: require('./../../assets/Kiyafet3.png'),
+        { id: '3', name: 'Black Tshirt',category:"Tshirt", price: 300, image: require('./../../assets/Kiyafet3.png'),
             description: "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front." },
-        { id: '4', name: 'Ürün 4', price: 400, image: require('./../../assets/Kiyafet1.png'),
+        { id: '4', name: 'Yellow Shoe',category:"Shoes", price: 400, image: require('./../../assets/Kiyafet1.png'),
             description: "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front." },
       ];
     return(
@@ -27,9 +27,9 @@ export default function Home(){
         
                  <View style={{gap:2}}>
 
-                    <Button title="MAN" />
-                    <Button title="WOMEN" />
-                    <Button title="KIDS" />
+                    <Button title="MAN" onPress={() => {navigation.navigate("Products",{gender:"MAN"})}} />
+                    <Button title="WOMEN" onPress={() => {navigation.navigate("Products",{gender:"WOMEN"})}} />
+                    <Button title="KIDS" onPress={() => {navigation.navigate("Products",{gender:"KIDS"})}} />
 
                  </View>
         
@@ -61,13 +61,13 @@ export default function Home(){
         
       <TouchableOpacity
       onPress={()=> navigation.navigate("Products")}
-      style={{backgroundColor:"#827D7D",width:180,padding:10,marginTop:20,
+        style={{backgroundColor:"#827D7D",width:180,padding:10,marginTop:20,
         flexDirection:"row",
         justifyContent:"center",
         alignItems:"center",
         gap:10}}>
       
-        <Text style={style.subTitle}>Go To Shop</Text>
+        <Text style={style.subTitle}>Go Shopping</Text>
         <ArrowRightIcon  />
       </TouchableOpacity>
       

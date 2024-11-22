@@ -1,46 +1,50 @@
-import { View,Text,Image,StyleSheet,TouchableOpacity } from "react-native";
-import {
-    useNavigation,
-  } from '@react-navigation/native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
-export default function ProductCard({item}) {
-    const navigation = useNavigation();
-    return(
+export default function ProductCard({ item }) {
+  const navigation = useNavigation();
+  return (
     <TouchableOpacity
-    onPress={() => navigation.navigate("ProductDetail",{item:item})}
-    style={style.cardContainer}>
-        <Image style={style.image} source={item.image} />
-
-        <Text style={style.categoryText}>{item.name}</Text>
-        
-        <View style={{flex:1, justifyContent:"space-between"}}>
-        <Text style={style.productNameText}>blab <Text>{item.price}</Text> </Text>
-        
-        </View>
+      onPress={() => navigation.navigate("ProductDetail", { item: item })}
+      style={style.cardContainer}>
+      <Image style={style.image} source={item.image} />
+      
+      <Text style={style.categoryText}>{item.category}</Text>
+      
+      <View style={style.productInfoContainer}>
+        <Text style={style.productNameText}>{item.name}</Text>
+        <Text style={style.productPriceText}>${item.price}</Text>
+      </View>
     </TouchableOpacity>
-   
-    )
+  );
 }
 
 const style = StyleSheet.create({
-    cardContainer:{
-        width:180,
-        height:200,
-        marginTop:20
-    },
-    image:{
-        width:170,
-        height:150,
-    },
-    categoryText:{
-        color:"#827D7D",
-        fontFamily:"BeatriceDeck-RegularItalic"
+  cardContainer: {
+    width: 180,
+    height: 200,
 
-    },
-    productNameText:{
-        flex:1,
-        color:"#000000",
-        fontFamily:"BeatriceDeck-RegularItalic",
-    
-    }
-})
+    padding: 10, 
+  },
+  image: {
+    width: 170,
+    height: 150,
+  },
+  categoryText: {
+    color: "#827D7D",
+    fontFamily: "BeatriceDeck-RegularItalic",
+  },
+  productInfoContainer: {
+    flexDirection: "row", 
+    justifyContent: "space-between", 
+    alignItems: "center", 
+  },
+  productNameText: {
+    color: "#000000",
+    fontFamily: "BeatriceDeck-RegularItalic",
+  },
+  productPriceText: {
+    color: "#000000", 
+    fontFamily: "BeatriceDeck-SemiBoldItalic",
+  }
+});

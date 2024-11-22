@@ -1,93 +1,106 @@
-import React, { useState,useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { useContext } from "react";
 import BasketContext from "../context/basketContext";
 import ShoppingItemCard from "../components/ShoppingItemCard/ShoppingItemCard";
+import { useNavigation } from '@react-navigation/native';
 
 export default function BasketScreen({ tab = null }) {
-  const [activeTab, setActiveTab] = useState(tab);
+  const [activeTab, setActiveTab] = useState("shoppingbag");
   const [totalPrice, setTotalPrice] = useState(0);
-  const {items,addItem,removeItem,deleteItem} = useContext(BasketContext);
+  const { items, addItem, removeItem, deleteItem } = useContext(BasketContext);
 
+  const navigation = useNavigation();
 
-  useEffect(()=>{
-    const total = items.reduce((prc,item) =>{
-
-      return  item.price * item.quantity;
-    },0)
-
+  useEffect(() => {
+    const total = items.reduce((prc, item) => {
+      return prc + item.price * item.quantity;
+    }, 0);
     setTotalPrice(total);
+  }, [items]);
 
-  },items)
-
-  function handleSetActiveBasket(){
-    setActiveTab("basket");
+  function handleSetActiveBasket() {
+    setActiveTab("shoppingbag");
   }
-  function handleSetActiveFavourites(){
+
+  function handleSetActiveFavourites() {
     setActiveTab("favourites");
   }
 
- 
-
-  
   return (
-    <ScrollView style={{ marginHorizontal: 12 }}>
-
-
+    <View style={{ flex: 1, marginHorizontal: 12 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-
-        <TouchableOpacity style={style.button} onPress={handleSetActiveBasket} >
-          <Text style={style.text}>SHOPPING BAG</Text>
+        <TouchableOpacity style={styles.button} onPress={handleSetActiveBasket}>
+          <Text style={activeTab === "shoppingbag" ? styles.activeButton : styles.text}>
+            SHOPPING BAG
+          </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={style.button} onPress={handleSetActiveFavourites}>
-          <Text style={style.text}>FAVOURTIES</Text>
+        <TouchableOpacity style={styles.button} onPress={handleSetActiveFavourites}>
+          <Text style={activeTab === "favourites" ? styles.activeButton : styles.text}>
+            FAVOURITES
+          </Text>
         </TouchableOpacity>
-        
       </View>
 
-      {items.length > 0  ?  (
-  <FlatList
-data={items}
-renderItem={({ item }) => <ShoppingItemCard item={item} addItem={addItem} deleteItem={deleteItem} removeItem={removeItem} />}
-keyExtractor={(item) => item.id.toString()} 
-  />
-) : <Text style={{fontFamily:"BeatriceDeck-RegularItalic"}}>Do not have any products in your basket.</Text>}
+      {activeTab === "shoppingbag" && items.length > 0 ? (
+        <FlatList
+          data={items}
+          renderItem={({ item }) => (
+            <ShoppingItemCard
+              item={item}
+              addItem={addItem}
+              deleteItem={deleteItem}
+              removeItem={removeItem}
+            />
+          )}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      ) : (
+        <Text style={{ fontFamily: "BeatriceDeck-RegularItalic" }}>
+          Do not have any products in your basket.
+        </Text>
+      )}
 
-
-
-{items.length > 0 ? (
-  <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginVertical: 20 }}>
-    <View>
-      <Text style={style.text}>Subtotal  {totalPrice}$</Text>
-      <Text style={style.text}>Shipping  10$</Text>
-      <Text style={style.text}>Total  {totalPrice + 10}$</Text>
+      {activeTab === "shoppingbag" && items.length > 0 ? (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginVertical: 20 }}>
+          <View>
+            <Text style={styles.text}>Subtotal  {totalPrice}$</Text>
+            <Text style={styles.text}>Shipping  10$</Text>
+            <Text style={styles.text}>Total  {totalPrice + 10}$</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.continueButton}
+            onPress={() => navigation.navigate('Checkout')}
+          >
+            <Text style={styles.text}>CONTINUE</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </View>
-    <TouchableOpacity style={style.continueButton}>
-      <Text style={style.text}>CONTINUE</Text>
-    </TouchableOpacity>
-  </View>
-) : null}
- 
-    </ScrollView>
   );
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
-    flex: 1, 
-    paddingVertical: 10, 
+    flex: 1,
+    paddingVertical: 10,
+  },
+  activeButton: {
+    textAlign: "center",
+    alignItems: "center",
+    fontFamily: "BeatriceDeck-SemiBoldItalic",
   },
   text: {
     fontFamily: "BeatriceDeck-Light",
-    textAlign: "center", 
+    textAlign: "center",
     alignItems: "center",
   },
   continueButton: {
     width: 200,
     backgroundColor: "gray",
     height: 50,
-    justifyContent: "center", 
+    justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
   },

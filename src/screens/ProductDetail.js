@@ -1,27 +1,35 @@
+import { useContext } from "react";
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import LikeIcon from "../../assets/LikeIcon.svg";
-
-import { useContext } from "react";
-import BasketContext from "../context/basketContext.js"
-
-
+import BasketContext from "../context/basketContext.js";
 
 export default function ProductDetail({ route }) {
-
   const { item } = route.params;
   const basketCtx = useContext(BasketContext);
 
-  function handleAddItemToBasket(){
-    basketCtx.addItem(item);
+  const isItemInBasket = basketCtx.items.some((basketItem) => basketItem.id === item.id);
+
+  // Add or remove item from basket
+  function handleAddItemToBasket() {
+    if (isItemInBasket) {
+      basketCtx.removeItem(item.id); 
+    } else {
+      basketCtx.addItem(item); 
     }
+  }
 
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={{ marginHorizontal: 12 }}>
         <Image style={style.image} source={item.image} />
-
-        <View style={{ marginTop: 100 }}>
-          <Text>Other Images</Text>
+        <View style={{ marginTop: 20 }}>
+          <Text style={style.otherImagesText}>Other Images</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {/* Here you can add other images of the product in a horizontal scroll */}
+            {item.otherImages?.map((image, index) => (
+              <Image key={index} style={style.otherImage} source={image} />
+            ))}
+          </ScrollView>
         </View>
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -42,18 +50,17 @@ export default function ProductDetail({ route }) {
             >
               <LikeIcon />
             </TouchableOpacity>
-            <Text style={{ fontFamily: "BeatriceDeck-SemiBoldItalic" }}>{item.price}</Text>
+            <Text style={{ fontFamily: "BeatriceDeck-SemiBoldItalic" }}>{item.price}$</Text>
           </View>
         </View>
 
-        <Text style={style.descText}>
-          {item.description}
-        </Text>
+        <Text style={style.descText}>{item.description}</Text>
       </ScrollView>
 
-     
-      <TouchableOpacity style={style.addButton} onPress={handleAddItemToBasket} >
-        <Text style={style.nameText}>ADD</Text>
+      <TouchableOpacity style={style.addButton} onPress={handleAddItemToBasket}>
+        <Text style={style.nameText}>
+          {isItemInBasket ? "REMOVE FROM BASKET" : "ADD TO BASKET"}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -61,9 +68,19 @@ export default function ProductDetail({ route }) {
 
 const style = StyleSheet.create({
   image: {
-    flex: 1,
-    width: "auto",
+    width: "100%",  
+    height: 300,    
     resizeMode: "contain",
+  },
+  otherImage: {
+    width: 120,    
+    height: 120,   
+    marginRight: 10, 
+    resizeMode: "contain",
+  },
+  otherImagesText: {
+    fontFamily: "BeatriceDeck-SemiBoldItalic",
+    marginBottom: 10,
   },
   nameText: {
     fontFamily: "BeatriceDeck-SemiBoldItalic",
@@ -75,14 +92,14 @@ const style = StyleSheet.create({
   addButton: {
     position: "absolute",
     bottom: 0,
-    left: 0, 
-    right: 0, 
+    left: 0,
+    right: 0,
     backgroundColor: "#D9D9D9",
     height: 50,
     alignItems: "center",
     justifyContent: "center",
   },
-  descText:{
-    fontFamily:"BeatriceDeck-Light"
-  }
+  descText: {
+    fontFamily: "BeatriceDeck-Light",
+  },
 });

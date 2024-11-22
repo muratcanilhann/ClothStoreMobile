@@ -11,7 +11,7 @@ import {useEffect} from 'react';
 import { BasketContextProvider } from './src/context/basketContext.js';
 
 
-import {Profile,BasketPage,Products,Home,ProductDetail} from "./src/screens/index.js"
+import {Profile,BasketPage,Products,Home,ProductDetail,Checkout} from "./src/screens/index.js"
 
 import {
   createStaticNavigation,
@@ -64,6 +64,7 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
+    
 
    <BasketContextProvider>
     <NavigationContainer>
@@ -100,11 +101,16 @@ export default function App() {
     )
   })}
 >
-  <Drawer.Screen name="Home" component={Home} options={{title:"Home",headerTitleAlign:"center"}} />
-  <Drawer.Screen name="Products" component={Products} />
-  <Drawer.Screen name="Basket" component={BasketPage} />
-  <Drawer.Screen name="Profile" component={Profile} />
-  <Drawer.Screen name="ProductDetail" component={ProductDetail} />
+  <Drawer.Screen name="Home"  component={Home} options={{title:"Home",headerTitleAlign:"center"}} />
+  <Drawer.Screen name="Products" initialParams={{ gender: "All" }} component={Products} />
+  <Drawer.Screen name="Basket" options={{drawerItemStyle: { display: 'none' },
+    }} component={BasketPage} />
+  <Drawer.Screen name="Profile" options={{drawerItemStyle: { display: 'none' },
+    }} component={Profile} />
+  <Drawer.Screen name="ProductDetail" options={{drawerItemStyle: { display: 'none' },
+    }}  component={ProductDetail} />
+  <Drawer.Screen name="Checkout" options={{drawerItemStyle: { display: 'none' },
+    }} component={Checkout} />
 
 </Drawer.Navigator>
     </NavigationContainer>

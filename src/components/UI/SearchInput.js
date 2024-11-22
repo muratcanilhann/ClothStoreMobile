@@ -1,13 +1,16 @@
 import { TextInput,StyleSheet } from "react-native"
 
-export default function SearchInput({...props}){
+export default function SearchInput({ value, onChangeText,...props}){
     return(
-    <TextInput style={style.input} {...props} />
+    <TextInput
+    value={value}
+    onChangeText={onChangeText}
+    style={styles.input} {...props} />
     )
 }
 
 
-const style= StyleSheet.create({
+const styles= StyleSheet.create({
     input :{
     height: 40,
      backgroundColor:"#D9D9D9",
