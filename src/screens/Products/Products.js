@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { useState } from "react";
-import SearchInput from "../components/UI/SearchInput";
-import CategoryBox from "../components/CategoryBox/CategoryBox";
-import ProductCard from "../components/ProductCard/ProductCard";
+import SearchInput from "../../components/UI/SearchInput";
+import CategoryBox from "../../components/CategoryBox/CategoryBox";
+import ProductCard from "../../components/ProductCard/ProductCard";
+import styles from "./Products.styles";
 
 export default function Products({ route }) {
   const [category, setCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { gender = "All" } = route.params; // Varsayılan olarak "All" atanır
+  const { gender = "All" } = route.params; 
 
-  // Kategoriler
   const categories = [
     { id: "0", text: "All" },
     { id: "1", text: "Tshirt" },
@@ -20,7 +20,6 @@ export default function Products({ route }) {
     { id: "5", text: "Accessories" },
   ];
 
-  // Ürünler
   const products = [
     {
       id: "1",
@@ -28,7 +27,7 @@ export default function Products({ route }) {
       gender: "MAN",
       category: "Pants",
       price: 100,
-      image: require("./../../assets/Kiyafet1.png"),
+      image: require("./../../../assets/Kiyafet1.png"),
       description: "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front.",
     },
     {
@@ -37,7 +36,7 @@ export default function Products({ route }) {
       gender: "MAN",
       category: "Shirt",
       price: 200,
-      image: require("./../../assets/Kiyafet2.png"),
+      image: require("./../../../assets/Kiyafet2.png"),
       description: "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front.",
     },
     {
@@ -46,7 +45,7 @@ export default function Products({ route }) {
       gender: "MAN",
       category: "Tshirt",
       price: 300,
-      image: require("./../../assets/Kiyafet3.png"),
+      image: require("./../../../assets/Kiyafet3.png"),
       description: "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front.",
     },
     {
@@ -55,7 +54,7 @@ export default function Products({ route }) {
       gender: "MAN",
       category: "Shoes",
       price: 400,
-      image: require("./../../assets/Kiyafet1.png"),
+      image: require("./../../../assets/Kiyafet1.png"),
       description: "Relaxed-fit shirt. Camp collar and short sleeves. Button-up front.",
     },
     {
@@ -64,7 +63,7 @@ export default function Products({ route }) {
       gender: "WOMAN",
       category: "Dress",
       price: 500,
-      image: require("./../../assets/Kiyafet2.png"),
+      image: require("./../../../assets/Kiyafet2.png"),
       description: "Elegant pink dress, perfect for evening events.",
     },
     {
@@ -73,22 +72,22 @@ export default function Products({ route }) {
       gender: "WOMAN",
       category: "Shoes",
       price: 600,
-      image: require("./../../assets/Kiyafet3.png"),
+      image: require("./../../../assets/Kiyafet3.png"),
       description: "Stylish red high heels for any occasion.",
     },
   ];
 
   const filteredList = products.filter((product) => {
-    const matchesGender = gender === "All" ? true : product.gender === gender.toUpperCase(); // Eğer "All" ise tüm gender'lar
-    const matchesCategory = category ? product.category === category : true; // Kategori kontrolü
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()); // Arama kontrolü
+    const matchesGender = gender === "All" ? true : product.gender === gender.toUpperCase(); 
+    const matchesCategory = category ? product.category === category : true;
+    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()); 
     return matchesGender && matchesCategory && matchesSearch;
   });
 
   const renderCategoryBox = ({ item }) => (
     <CategoryBox
       text={item.text}
-      onPress={() => setCategory(item.text === "All" ? null : item.text)} // "All" seçilirse kategori temizlenir
+      onPress={() => setCategory(item.text === "All" ? null : item.text)} 
     />
   );
 
@@ -129,29 +128,3 @@ export default function Products({ route }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginHorizontal: 15,
-    marginTop: 30,
-  },
-  headerLocation: {
-    textAlign: "center",
-    fontFamily: "BeatriceDeck-RegularItalic",
-  },
-  header: {
-    fontFamily: "BeatriceDeck-EBItalic",
-    fontSize: 25,
-    textAlign: "center",
-  },
-  flatList: {
-    paddingHorizontal: 10,
-    gap: 10,
-  },
-  noProductsText: {
-    textAlign: "center",
-    marginTop: 20,
-    fontSize: 16,
-    color: "gray",
-  },
-});

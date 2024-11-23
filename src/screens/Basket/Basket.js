@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { useContext } from "react";
-import BasketContext from "../context/basketContext";
-import ShoppingItemCard from "../components/ShoppingItemCard/ShoppingItemCard";
+import styles from "./Basket.style";
+import BasketContext from "../../context/basketContext";
+import ShoppingItemCard from "../../components/ShoppingItemCard/ShoppingItemCard";
 import { useNavigation } from '@react-navigation/native';
 
 export default function BasketScreen({ tab = null }) {
@@ -81,27 +82,3 @@ export default function BasketScreen({ tab = null }) {
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    flex: 1,
-    paddingVertical: 10,
-  },
-  activeButton: {
-    textAlign: "center",
-    alignItems: "center",
-    fontFamily: "BeatriceDeck-SemiBoldItalic",
-  },
-  text: {
-    fontFamily: "BeatriceDeck-Light",
-    textAlign: "center",
-    alignItems: "center",
-  },
-  continueButton: {
-    width: 200,
-    backgroundColor: "gray",
-    height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 20,
-  },
-});

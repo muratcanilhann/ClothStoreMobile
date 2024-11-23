@@ -1,11 +1,12 @@
 import { Text, TextInput, View, StyleSheet,TouchableOpacity,ScrollView,Image,FlatList } from "react-native";
-import Button from "../components/UI/Button";
+import Button from "../../components/UI/Button";
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useState } from "react";
-import ArrowRightIcon from "../../assets/ArrowRightIcon.svg";
-import BasketContext from "../context/basketContext";
+import styles from "./Checkout.style";
+import ArrowRightIcon from "../../../assets/ArrowRightIcon.svg";
+import BasketContext from "../../context/basketContext";
 import { useContext } from "react";
-import OrderProductCard from "../components/OrderProductCard/OrderProductCard";
+import OrderProductCard from "../../components/OrderProductCard/OrderProductCard";
 export default function Checkout() {
 
     const [open, setOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function Checkout() {
   const {items} = useContext(BasketContext);
 
   return (
-    <ScrollView style={{ paddingHorizontal: 10 }}>
+    <ScrollView style={styles.container}>
       <Text style={styles.header}>CHECKOUT</Text>
 
       <View style={styles.tab}>
@@ -67,11 +68,7 @@ export default function Checkout() {
 
         <TouchableOpacity
 
-        style={{backgroundColor:"#827D7D",padding:14,marginTop:20,
-        flexDirection:"row",
-        justifyContent:"space-between",
-        alignItems:"center",
-        gap:10}}>
+        style={styles.button}>
       
         <Text style={styles.subTitle}>Shipping</Text>
         <ArrowRightIcon  />
@@ -80,7 +77,7 @@ export default function Checkout() {
       </View>
 
           <View style={styles.orderContainer}>
-            <Text style={{fontFamily:"BeatriceDeck-EBItalic"}}>Your Orders</Text>
+            <Text style={styles.orderText}>Your Orders</Text>
 
 
           <View>
@@ -105,54 +102,3 @@ export default function Checkout() {
   );
 }
 
-const styles = StyleSheet.create({
-  header: {
-    fontSize: 24,
-    fontFamily: "BeatriceDeck-EBItalic",
-  },
-  tab: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 30,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#D9D9D9",
-    placeholderTextColor: "#5E5E5E",
-    fontFamily: "BeatriceDeck-SemiBoldItalic",
-    marginTop: 9,
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-  },
-  inputHalf: {
-    flex: 1,
-    marginRight: 10, 
-  },
-  halfContainer: {
-    flexDirection: "row", 
-    justifyContent: "space-between", 
-    marginTop: 10,
-  },
-  subTitle: {
-    fontFamily: "BeatriceDeck-SemiBoldItalic",
-    marginTop: 10,
-  },
-  picker:{
-    backgroundColor:null,
-    borderWidth:1,
-    borderColor:"#D9D9D9",
-    marginTop:10,
-    fontFamily:"BeatriceDeck-SemiBoldItalic"
-  },
-  pickerItem:{
-      fontFamily:"BeatriceDeck-SemiBoldItalic",
-      color:"#5E5E5E" 
-  },
-  orderContainer:{
-    borderWidth:1,
-    borderColor:"#D9D9D9",
-    marginTop:20,
-    padding:20
-
-  }
-});
