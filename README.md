@@ -10,6 +10,8 @@ Uygulamanın geliştirilmesi devam etmektedir. Hem web hem de mobil platformlar 
   <img src="screenshots/ss1.png" alt="Page1" width="250" />
   <img src="screenshots/ss2.png" alt="Page2" width="250" />
   <img src="screenshots/ss3.png" alt="Page3" width="250" />
+   <img src="screenshots/ss4.png" alt="Page1" width="250" />
+  <img src="screenshots/ss5.png" alt="Page2" width="250" />
 </div>
 
 ## Figma Tasarımı
