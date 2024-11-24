@@ -1,6 +1,6 @@
 import { Text,View,Image,StyleSheet,TouchableOpacity } from "react-native";
 import LikeIcon from "../../../assets/LikeIcon.svg";
-
+import styles from "./ShoppingItemCard.style";
 
 export default function ShoppingItemCard({item,addItem,removeItem,deleteItem}){
 
@@ -18,7 +18,7 @@ export default function ShoppingItemCard({item,addItem,removeItem,deleteItem}){
     return(
         <View style={{marginBottom:20}}>
         <View style={{flex:1,flexDirection:"row"}} >
-         <View style={style.container}>
+         <View style={styles.container}>
 
             <Image style={{ width:270,
     height:270,resizeMode:"contain"}} source={item.image} />
@@ -104,11 +104,3 @@ export default function ShoppingItemCard({item,addItem,removeItem,deleteItem}){
 }
 
 
-const style = StyleSheet.create({
-    container:{
-    width:270,
-    height:270,
-    flexDirection:"row",
-    
-    }
-})

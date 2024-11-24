@@ -1,6 +1,10 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet,Dimensions } from "react-native";
 import {font} from "@style";
 
+  const w = Dimensions.get("window").width;
+  const h = Dimensions.get("window").height;
+
+ 
 export default StyleSheet.create({
     button: {
       flex: 1,
@@ -17,9 +21,9 @@ export default StyleSheet.create({
       alignItems: "center",
     },
     continueButton: {
-      width: 200,
+      width: w * 0.5,
       backgroundColor: "gray",
-      height: 50,
+      height: h * 0.06,
       justifyContent: "center",
       alignItems: "center",
       marginTop: 20,

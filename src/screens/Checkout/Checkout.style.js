@@ -54,13 +54,17 @@ export default StyleSheet.create({
       padding:20
   
     },
-   button: {backgroundColor:"#827D7D",padding:14,marginTop:20,
+   button: {
+      backgroundColor:color.SMOKE,
+      padding:14,
+      marginTop:20,
       flexDirection:"row",
       justifyContent:"space-between",
       alignItems:"center",
       gap:10},
+      
     orderText:{
-      fontFamily:"BeatriceDeck-EBItalic"
+      fontFamily:font.EXTRA_BOLD
     }
   });
   

@@ -103,7 +103,7 @@ export default function Products({ route }) {
         />
       </View>
 
-      <View style={{ marginTop: 40 }}>
+      <View style={{  marginTop: 40 }}>
         <FlatList
           data={categories}
           renderItem={renderCategoryBox}

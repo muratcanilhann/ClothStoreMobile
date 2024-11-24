@@ -20,15 +20,20 @@ export default function ProductDetail({ route }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView style={{ marginHorizontal: 12 }}>
+
+      <ScrollView>
+
         <Image style={styles.image} source={item.image} />
-        <View style={{ marginTop: 20 }}>
+
+        <View style={{ marginTop: 20, }}>
+
           <Text style={styles.otherImagesText}>Other Images</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {item.otherImages?.map((image, index) => (
               <Image key={index} style={styles.otherImage} source={image} />
             ))}
           </ScrollView>
+          
         </View>
 
         <View style={styles.productDetailsContainer}>
@@ -36,6 +41,7 @@ export default function ProductDetail({ route }) {
             <Text style={styles.nameText}>{item.name}</Text>
             <Text style={styles.taxText}>MRP incl. of all taxes</Text>
           </View>
+          
 
           <View>
             <TouchableOpacity
@@ -55,6 +61,7 @@ export default function ProductDetail({ route }) {
           {isItemInBasket ? "REMOVE FROM BASKET" : "ADD TO BASKET"}
         </Text>
       </TouchableOpacity>
+      
     </View>
   );
 }

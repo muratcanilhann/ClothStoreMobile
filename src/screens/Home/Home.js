@@ -1,9 +1,9 @@
 import { View,StyleSheet,Text,TouchableOpacity,FlatList,ScrollView } from "react-native";
-import Button from "../../components/UI/Button.js";
 import styles from "./Home.style.js"
-import SearchInput from "../../components/UI/SearchInput.js";
-import ProductCard from "../../components/ProductCard/ProductCard.js";
 import ArrowRightIcon from "../../../assets/ArrowRightIcon.svg";
+
+import {Button,SearchInput,ProductCard} from "../../components";
+
 import {
     useNavigation,
   } from '@react-navigation/native';
@@ -62,13 +62,9 @@ export default function Home(){
         
       <TouchableOpacity
       onPress={()=> navigation.navigate("Products")}
-        style={{backgroundColor:"#827D7D",width:180,padding:10,marginTop:20,
-        flexDirection:"row",
-        justifyContent:"center",
-        alignItems:"center",
-        gap:10}}>
+        style={styles.shoppingButton}>
       
-        <Text style={styles.subTitle}>Go Shopping</Text>
+        <Text style={styles.subTitle}>Go Shoping</Text>
         <ArrowRightIcon  />
       </TouchableOpacity>
       

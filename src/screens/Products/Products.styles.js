@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
-import {font,typography} from "@style";
+import {font,typography,color} from "@style";
 export default StyleSheet.create({
     container: {
       flex: 1,
-      marginHorizontal: 15,
+      marginHorizontal: 12,
       marginTop: 30,
     },
     headerLocation: {
@@ -23,7 +23,7 @@ export default StyleSheet.create({
       textAlign: "center",
       marginTop: 20,
       fontSize: typography.MEDIUM,
-      color: "gray",
+      color: color.SMOKE,
     },
   });
   

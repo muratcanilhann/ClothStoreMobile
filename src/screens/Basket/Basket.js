@@ -64,7 +64,7 @@ export default function BasketScreen({ tab = null }) {
       )}
 
       {activeTab === "shoppingbag" && items.length > 0 ? (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginVertical: 20 }}>
+        <View style={{  alignItems: "center", justifyContent: "center", marginVertical: 20, marginTop:20 }}>
           <View>
             <Text style={styles.text}>Subtotal  {totalPrice}$</Text>
             <Text style={styles.text}>Shipping  10$</Text>

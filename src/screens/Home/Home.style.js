@@ -1,5 +1,7 @@
-import { StyleSheet } from "react-native";
-import {font,typography} from "@style";
+import { StyleSheet, Dimensions } from "react-native";
+import {font,typography, color} from "@style";
+
+const w = Dimensions.get("window").width;
 
 export default StyleSheet.create({
     container:{
@@ -17,5 +19,15 @@ export default StyleSheet.create({
     },
     subTitle:{
         fontFamily: font.SEMIBOLD_ITALIC
+    },
+    shoppingButton:{
+        backgroundColor: color.SMOKE,
+        width: w * 0.5,
+        padding: 10,
+        marginTop: 20,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 10
     }
 })

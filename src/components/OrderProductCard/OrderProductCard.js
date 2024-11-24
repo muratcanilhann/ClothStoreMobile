@@ -1,6 +1,7 @@
 import { View,Text,Image,StyleSheet } from "react-native";
 import { useContext } from "react";
 import BasketContext from "../../context/basketContext";
+import styles from "./OrderProductCard.style";
 
 export default function OrderProductCard({item}){
     const {items} = useContext(BasketContext);
@@ -23,15 +24,3 @@ export default function OrderProductCard({item}){
     )
 }
 
-const styles = StyleSheet.create({
-    cardContainer:{
-    flexDirection:"row",
-    width:400,
-    marginTop:15,
-    },
-    cardImage:{
-        width:100,
-        height:100,
-    }
-
-})
